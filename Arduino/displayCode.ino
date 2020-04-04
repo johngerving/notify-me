@@ -1,33 +1,3 @@
-/*
-  Try out text on your Qwiic Transparent Grahical OLED.
-  
-  By: Owen Lyke
-  SparkFun Electronics
-  Date: November 27, 2019
-  License: MIT. See license file for more information but you can
-  basically do whatever you want with this code.
-  Feel like supporting open source hardware?
-  Buy a board from SparkFun! https://www.sparkfun.com/products/15173
-  The graphics library is like a 3-layer cake. Here they are from top-down
-  https://github.com/sparkfun/SparkFun_HyperDisplay
-  https://github.com/sparkfun/HyperDisplay_SSD1309_ArduinoLibrary
-  https://github.com/sparkfun/HyperDisplay_UG2856KLBAG01_ArduinoLibrary
-  Hardware Compatibility
-    - The IO pins on this board are designed for use with 3.3V so if you are using a 5V microcontroller
-      please use a level shifter. Note: Qwiic connectors on SparkFun dev boards are already at 3.3V
-    - This display relies on a copy of graphics data in your microcontroller, a total of 1024 bytes. 
-      That is half the RAM available on an Uno so it is easy to run into sinister low-memory related
-      bugs. We reccomend using a micro with more memory like a SAMD21, Esp32, Teensy, etc.
-  
-  Hardware Connections:
-  Option 1 (I2C):
-    Connect using a Qwiic jumper if you have a Qwiic compatible board and you plan to use I2C
-  Option 2 (SPI):
-    Connect SCLK and MOSI to the SPI port of your choice (13 and 11 for SPI on Uno-like boards) 
-    Also connect D/C and CS to two unused GPIO pins of your choice (and set the proper pin definitions below)
-    Don't forget power - connect 3.3V and GND
-*/
-
 #include "HyperDisplay_UG2856KLBAG01.h"   // Your library can be installed here: http://librarymanager/All#SparkFun_Transparent_Graphical_OLED
                                           // The rest of the Layer Cake:         http://librarymanager/All#SparkFun_HyperDisplay_SSD1309
                                           //                                     http://librarymanager/All#SparkFun_HyperDisplay
