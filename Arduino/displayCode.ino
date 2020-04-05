@@ -24,6 +24,47 @@
   UG2856KLBAG01_I2C myTOLED;  // Declare a I2C-based Transparent OLED object called myTOLED
 #endif /* USE_SPI */
 
+char headlines[][150] = {
+  "Fox Anchor Confronts Surgeon General Over Trump Declining to Issue Lockdown - Newsweek",
+  "Andrew Cuomo's not your boyfriend � and Joe Biden's definitely not your dad - Salon",
+  "Esper defends removing USS Theodore Roosevelt commander who sounded alarm over coronavirus - CNN",
+  "European Slowdown in Virus Deaths Bolsters Leaders on Lockdowns - Bloomberg",
+  "Bill Gates calls coronavirus pandemic a 'nightmare scenario,' but predicts lower death toll than Trump - CNBC",
+  "President Donald Trump Tweetstorm � The Sunday Edition - Deadline",
+  "Georgia Mayor Blasts Governor for Reopening State's Beaches During Pandemic - Newsweek",
+  "Significant storm system begins to impact California with heavy rain, flash flooding - ABC News",
+  "Jared Kushner and his shadow corona unit: what is Trump's son-in-law up to? - The Guardian",
+  "Fed's Bullard says US economy not in 'free fall' despite 32% unemployment projection - CNBC",
+  "Queen Elizabeth II's coronavirus address | LBC - LBC",
+  "Pope Francis Livestreams Palm Sunday Mass In An 'Empty' St. Peter's Amid The Pandemic - NPR",
+  "Some pastors defiant as churches celebrate Palm Sunday during coronavirus outbreak - Fox News",
+  "Spain coronavirus: Death toll rise shows signs of flattening - CNN",
+  "Global economy screeches to a halt as coronavirus job losses take toll - New York Post ",
+  "3 Top Stocks to Buy With Dividends Yielding More Than 3% - Motley Fool",
+  "Gig Workers Struggle To Get Financial Help During Pandemic - NPR",
+  "This Dirt-Cheap Warren Buffett Stock Should Be Your Top Pick Right Now - Motley Fool",
+  "Every upcoming phone available this spring and summer of 2020 - CNET",
+  "Apple Music's success is helping the company meet a long time revenue goal - PhoneArena",
+  "Amazon's Project Tempo could crush Google Stadia � here's why - Tom's Guide",
+  "This Week in Apps: Zoom has issues, Pinterest founder�s new COVID-19 research app, record Q1 spending - TechCrunch",
+  "'Tiger King' star Jeff Lowe says Netflix is adding a new episode of the show 'next week' - Fox News",
+  "Tearful Michelle Money Pleads for Prayers for Hospitalized Daughter - E! Online",
+  "Quibi app launch: best or worst timing? - The Verge",
+  "'Atlanta's Missing and Murdered': New HBO Series Dives Into the Darkness - Showbiz Cheat Sheet",
+  "Tom Dempsey, NFL kicker who set a record for the longest field goal, dies of coronavirus - CNN",
+  "Where Kobe Bryant, Tim Duncan and the 2020 Basketball Hall of Fame class rank among all-time best groups - CBS Sports",
+  "Ranking the 7 Biggest Draft Mistakes of the Past 5 Years - Bleacher Report",
+  "Pre-race show and concert ft. Austin Dillon and Justin Moore - NASCAR",
+  "NASA astronauts share their workout routine aboard the ISS to help motivate those on Earth living in isolation amid the coronavirus pandemic - msnNOW",
+  "Biggest, brightest supermoon of 2020 rises this week, when to see it - WKMG News 6 & ClickOrlando",
+  "NASA lays out plans for building a long-term moon base - Digital Trends",
+  "Coronavirus lockdowns have caused the Earth to effectively stop shaking - Fox News",
+  "Are you wearing your face mask properly? Many people aren�t, coronavirus experts say - Sacramento Bee",
+  "1918 to COVID-19: 100 years of covering pandemics | The Listening Post (Feature) - Al Jazeera English",
+  "Onondaga County warns of potential coronavirus exposure at 3 pharmacies, liquor store - syracuse.com",
+  "Maine coronavirus cases rise to 470; no new deaths reported, CDC says - WMTW Portland"
+};
+
 
 void setup() {
   Serial.begin(9600);
@@ -36,40 +77,66 @@ void setup() {
   myTOLED.begin(WIRE_PORT, false, SSD1309_ARD_UNUSED_PIN);  // Begin for I2C has default values for every argument
   Wire.setClock(400000);
 #endif /* USSE_SPI */
+  showLogo(); //SHows logo on startup... hopefully
 }
 
-void showLogo( void ){ //BIG BOY
+void showLogo( void ){
   myTOLED.clearDisplay();
-  myTOLED.pixelSet(0, 0); myTOLED.pixelSet(5, 0); myTOLED.pixelSet(9, 0); myTOLED.pixelSet(10, 0); myTOLED.pixelSet(11, 0); myTOLED.pixelSet(12, 0); myTOLED.pixelSet(16, 0); myTOLED.pixelSet(17, 0); myTOLED.pixelSet(18, 0); myTOLED.pixelSet(19, 0); myTOLED.pixelSet(20, 0); myTOLED.pixelSet(21, 0); myTOLED.pixelSet(22, 0); myTOLED.pixelSet(24, 0); myTOLED.pixelSet(25, 0); myTOLED.pixelSet(26, 0); myTOLED.pixelSet(27, 0); myTOLED.pixelSet(28, 0); myTOLED.pixelSet(29, 0); myTOLED.pixelSet(30, 0); myTOLED.pixelSet(32, 0); myTOLED.pixelSet(33, 0); myTOLED.pixelSet(34, 0); myTOLED.pixelSet(35, 0); myTOLED.pixelSet(36, 0); myTOLED.pixelSet(37, 0); myTOLED.pixelSet(40, 0); myTOLED.pixelSet(46, 0); 
-  myTOLED.pixelSet(0, 1); myTOLED.pixelSet(1, 1); myTOLED.pixelSet(5, 1); myTOLED.pixelSet(8, 1); myTOLED.pixelSet(13, 1); myTOLED.pixelSet(19, 1); myTOLED.pixelSet(27, 1); myTOLED.pixelSet(33, 1); myTOLED.pixelSet(41, 1); myTOLED.pixelSet(45, 1); 
-  myTOLED.pixelSet(0, 2); myTOLED.pixelSet(2, 2); myTOLED.pixelSet(5, 2); myTOLED.pixelSet(8, 2); myTOLED.pixelSet(13, 2); myTOLED.pixelSet(19, 2); myTOLED.pixelSet(27, 2); myTOLED.pixelSet(33, 2); myTOLED.pixelSet(42, 2); myTOLED.pixelSet(44, 2); 
-  myTOLED.pixelSet(0, 3); myTOLED.pixelSet(2, 3); myTOLED.pixelSet(5, 3); myTOLED.pixelSet(8, 3); myTOLED.pixelSet(13, 3); myTOLED.pixelSet(19, 3); myTOLED.pixelSet(27, 3); myTOLED.pixelSet(33, 3); myTOLED.pixelSet(34, 3); myTOLED.pixelSet(35, 3); myTOLED.pixelSet(36, 3); myTOLED.pixelSet(43, 3); 
-  myTOLED.pixelSet(0, 4); myTOLED.pixelSet(3, 4); myTOLED.pixelSet(5, 4); myTOLED.pixelSet(8, 4); myTOLED.pixelSet(13, 4); myTOLED.pixelSet(19, 4); myTOLED.pixelSet(27, 4); myTOLED.pixelSet(33, 4); myTOLED.pixelSet(43, 4); 
-  myTOLED.pixelSet(0, 5); myTOLED.pixelSet(3, 5); myTOLED.pixelSet(5, 5); myTOLED.pixelSet(8, 5); myTOLED.pixelSet(13, 5); myTOLED.pixelSet(19, 5); myTOLED.pixelSet(27, 5); myTOLED.pixelSet(33, 5); myTOLED.pixelSet(43, 5); 
-  myTOLED.pixelSet(0, 6); myTOLED.pixelSet(4, 6); myTOLED.pixelSet(5, 6); myTOLED.pixelSet(8, 6); myTOLED.pixelSet(13, 6); myTOLED.pixelSet(19, 6); myTOLED.pixelSet(27, 6); myTOLED.pixelSet(33, 6); myTOLED.pixelSet(43, 6); 
-  myTOLED.pixelSet(0, 7); myTOLED.pixelSet(5, 7); myTOLED.pixelSet(9, 7); myTOLED.pixelSet(10, 7); myTOLED.pixelSet(11, 7); myTOLED.pixelSet(12, 7); myTOLED.pixelSet(19, 7); myTOLED.pixelSet(24, 7); myTOLED.pixelSet(25, 7); myTOLED.pixelSet(26, 7); myTOLED.pixelSet(27, 7); myTOLED.pixelSet(28, 7); myTOLED.pixelSet(29, 7); myTOLED.pixelSet(30, 7); myTOLED.pixelSet(33, 7); myTOLED.pixelSet(43, 7); 
+  myTOLED.pixelSet(40, 11); myTOLED.pixelSet(41, 11); myTOLED.pixelSet(42, 11); myTOLED.pixelSet(43, 11); myTOLED.pixelSet(44, 11); myTOLED.pixelSet(45, 11); myTOLED.pixelSet(46, 11); myTOLED.pixelSet(47, 11); 
+  myTOLED.pixelSet(41, 12); 
+  myTOLED.pixelSet(42, 13); myTOLED.pixelSet(43, 13); 
+  myTOLED.pixelSet(44, 14); myTOLED.pixelSet(45, 14); 
+  myTOLED.pixelSet(46, 15); 
+  myTOLED.pixelSet(40, 16); myTOLED.pixelSet(41, 16); myTOLED.pixelSet(42, 16); myTOLED.pixelSet(43, 16); myTOLED.pixelSet(44, 16); myTOLED.pixelSet(45, 16); myTOLED.pixelSet(46, 16); myTOLED.pixelSet(47, 16); 
   
   
-  myTOLED.pixelSet(9, 10); myTOLED.pixelSet(20, 10); myTOLED.pixelSet(25, 10); myTOLED.pixelSet(26, 10); myTOLED.pixelSet(27, 10); myTOLED.pixelSet(28, 10); myTOLED.pixelSet(29, 10); myTOLED.pixelSet(30, 10); myTOLED.pixelSet(31, 10); myTOLED.pixelSet(32, 10); myTOLED.pixelSet(33, 10); myTOLED.pixelSet(34, 10); myTOLED.pixelSet(35, 10); myTOLED.pixelSet(36, 10); 
-  myTOLED.pixelSet(9, 11); myTOLED.pixelSet(10, 11); myTOLED.pixelSet(19, 11); myTOLED.pixelSet(20, 11); myTOLED.pixelSet(25, 11); myTOLED.pixelSet(26, 11); myTOLED.pixelSet(27, 11); myTOLED.pixelSet(28, 11); myTOLED.pixelSet(29, 11); myTOLED.pixelSet(30, 11); myTOLED.pixelSet(31, 11); myTOLED.pixelSet(32, 11); myTOLED.pixelSet(33, 11); myTOLED.pixelSet(34, 11); myTOLED.pixelSet(35, 11); myTOLED.pixelSet(36, 11); 
-  myTOLED.pixelSet(9, 12); myTOLED.pixelSet(10, 12); myTOLED.pixelSet(11, 12); myTOLED.pixelSet(18, 12); myTOLED.pixelSet(19, 12); myTOLED.pixelSet(20, 12); myTOLED.pixelSet(25, 12); myTOLED.pixelSet(26, 12); 
-  myTOLED.pixelSet(9, 13); myTOLED.pixelSet(10, 13); myTOLED.pixelSet(11, 13); myTOLED.pixelSet(12, 13); myTOLED.pixelSet(17, 13); myTOLED.pixelSet(18, 13); myTOLED.pixelSet(19, 13); myTOLED.pixelSet(20, 13); myTOLED.pixelSet(25, 13); myTOLED.pixelSet(26, 13); 
-  myTOLED.pixelSet(9, 14); myTOLED.pixelSet(10, 14); myTOLED.pixelSet(11, 14); myTOLED.pixelSet(12, 14); myTOLED.pixelSet(13, 14); myTOLED.pixelSet(16, 14); myTOLED.pixelSet(17, 14); myTOLED.pixelSet(18, 14); myTOLED.pixelSet(19, 14); myTOLED.pixelSet(20, 14); myTOLED.pixelSet(25, 14); myTOLED.pixelSet(26, 14); 
-  myTOLED.pixelSet(9, 15); myTOLED.pixelSet(10, 15); myTOLED.pixelSet(12, 15); myTOLED.pixelSet(13, 15); myTOLED.pixelSet(14, 15); myTOLED.pixelSet(15, 15); myTOLED.pixelSet(16, 15); myTOLED.pixelSet(17, 15); myTOLED.pixelSet(19, 15); myTOLED.pixelSet(20, 15); myTOLED.pixelSet(25, 15); myTOLED.pixelSet(26, 15); 
-  myTOLED.pixelSet(9, 16); myTOLED.pixelSet(10, 16); myTOLED.pixelSet(13, 16); myTOLED.pixelSet(14, 16); myTOLED.pixelSet(15, 16); myTOLED.pixelSet(16, 16); myTOLED.pixelSet(19, 16); myTOLED.pixelSet(20, 16); myTOLED.pixelSet(25, 16); myTOLED.pixelSet(26, 16); 
-  myTOLED.pixelSet(9, 17); myTOLED.pixelSet(10, 17); myTOLED.pixelSet(14, 17); myTOLED.pixelSet(15, 17); myTOLED.pixelSet(19, 17); myTOLED.pixelSet(20, 17); myTOLED.pixelSet(25, 17); myTOLED.pixelSet(26, 17); myTOLED.pixelSet(27, 17); myTOLED.pixelSet(28, 17); myTOLED.pixelSet(29, 17); myTOLED.pixelSet(30, 17); myTOLED.pixelSet(31, 17); myTOLED.pixelSet(32, 17); myTOLED.pixelSet(33, 17); 
-  myTOLED.pixelSet(9, 18); myTOLED.pixelSet(10, 18); myTOLED.pixelSet(19, 18); myTOLED.pixelSet(20, 18); myTOLED.pixelSet(25, 18); myTOLED.pixelSet(26, 18); myTOLED.pixelSet(27, 18); myTOLED.pixelSet(28, 18); myTOLED.pixelSet(29, 18); myTOLED.pixelSet(30, 18); myTOLED.pixelSet(31, 18); myTOLED.pixelSet(32, 18); myTOLED.pixelSet(33, 18); 
-  myTOLED.pixelSet(9, 19); myTOLED.pixelSet(10, 19); myTOLED.pixelSet(19, 19); myTOLED.pixelSet(20, 19); myTOLED.pixelSet(25, 19); myTOLED.pixelSet(26, 19); 
-  myTOLED.pixelSet(9, 20); myTOLED.pixelSet(10, 20); myTOLED.pixelSet(19, 20); myTOLED.pixelSet(20, 20); myTOLED.pixelSet(25, 20); myTOLED.pixelSet(26, 20); 
-  myTOLED.pixelSet(9, 21); myTOLED.pixelSet(10, 21); myTOLED.pixelSet(19, 21); myTOLED.pixelSet(20, 21); myTOLED.pixelSet(25, 21); myTOLED.pixelSet(26, 21); 
-  myTOLED.pixelSet(9, 22); myTOLED.pixelSet(10, 22); myTOLED.pixelSet(19, 22); myTOLED.pixelSet(20, 22); myTOLED.pixelSet(25, 22); myTOLED.pixelSet(26, 22); 
-  myTOLED.pixelSet(9, 23); myTOLED.pixelSet(10, 23); myTOLED.pixelSet(19, 23); myTOLED.pixelSet(20, 23); myTOLED.pixelSet(25, 23); myTOLED.pixelSet(26, 23); 
-  myTOLED.pixelSet(9, 24); myTOLED.pixelSet(10, 24); myTOLED.pixelSet(19, 24); myTOLED.pixelSet(20, 24); myTOLED.pixelSet(25, 24); myTOLED.pixelSet(26, 24); myTOLED.pixelSet(27, 24); myTOLED.pixelSet(28, 24); myTOLED.pixelSet(29, 24); myTOLED.pixelSet(30, 24); myTOLED.pixelSet(31, 24); myTOLED.pixelSet(32, 24); myTOLED.pixelSet(33, 24); myTOLED.pixelSet(34, 24); myTOLED.pixelSet(35, 24); myTOLED.pixelSet(36, 24); 
-  myTOLED.pixelSet(9, 25); myTOLED.pixelSet(10, 25); myTOLED.pixelSet(19, 25); myTOLED.pixelSet(20, 25); myTOLED.pixelSet(25, 25); myTOLED.pixelSet(26, 25); myTOLED.pixelSet(27, 25); myTOLED.pixelSet(28, 25); myTOLED.pixelSet(29, 25); myTOLED.pixelSet(30, 25); myTOLED.pixelSet(31, 25); myTOLED.pixelSet(32, 25); myTOLED.pixelSet(33, 25); myTOLED.pixelSet(34, 25); myTOLED.pixelSet(35, 25); myTOLED.pixelSet(36, 25); 
+  myTOLED.pixelSet(41, 19); myTOLED.pixelSet(42, 19); myTOLED.pixelSet(43, 19); myTOLED.pixelSet(44, 19); myTOLED.pixelSet(45, 19); myTOLED.pixelSet(46, 19); 
+  myTOLED.pixelSet(40, 20); myTOLED.pixelSet(47, 20); myTOLED.pixelSet(50, 20); myTOLED.pixelSet(51, 20); myTOLED.pixelSet(52, 20); myTOLED.pixelSet(53, 20); myTOLED.pixelSet(54, 20); myTOLED.pixelSet(55, 20); myTOLED.pixelSet(56, 20); myTOLED.pixelSet(57, 20); myTOLED.pixelSet(58, 20); myTOLED.pixelSet(59, 20); myTOLED.pixelSet(60, 20); myTOLED.pixelSet(61, 20); myTOLED.pixelSet(62, 20); myTOLED.pixelSet(63, 20); myTOLED.pixelSet(64, 20); myTOLED.pixelSet(65, 20); 
+  myTOLED.pixelSet(40, 21); myTOLED.pixelSet(47, 21); myTOLED.pixelSet(51, 21); myTOLED.pixelSet(52, 21); myTOLED.pixelSet(53, 21); myTOLED.pixelSet(54, 21); myTOLED.pixelSet(55, 21); myTOLED.pixelSet(56, 21); myTOLED.pixelSet(57, 21); myTOLED.pixelSet(58, 21); myTOLED.pixelSet(59, 21); myTOLED.pixelSet(60, 21); myTOLED.pixelSet(61, 21); myTOLED.pixelSet(62, 21); myTOLED.pixelSet(63, 21); myTOLED.pixelSet(64, 21); myTOLED.pixelSet(65, 21); 
+  myTOLED.pixelSet(40, 22); myTOLED.pixelSet(47, 22); myTOLED.pixelSet(52, 22); myTOLED.pixelSet(53, 22); myTOLED.pixelSet(54, 22); 
+  myTOLED.pixelSet(40, 23); myTOLED.pixelSet(47, 23); myTOLED.pixelSet(53, 23); myTOLED.pixelSet(54, 23); myTOLED.pixelSet(55, 23); 
+  myTOLED.pixelSet(41, 24); myTOLED.pixelSet(42, 24); myTOLED.pixelSet(43, 24); myTOLED.pixelSet(44, 24); myTOLED.pixelSet(45, 24); myTOLED.pixelSet(46, 24); myTOLED.pixelSet(54, 24); myTOLED.pixelSet(55, 24); myTOLED.pixelSet(56, 24); 
+  myTOLED.pixelSet(55, 25); myTOLED.pixelSet(56, 25); myTOLED.pixelSet(57, 25); 
+  myTOLED.pixelSet(55, 26); myTOLED.pixelSet(56, 26); myTOLED.pixelSet(57, 26); 
+  myTOLED.pixelSet(40, 27); myTOLED.pixelSet(54, 27); myTOLED.pixelSet(55, 27); myTOLED.pixelSet(56, 27); 
+  myTOLED.pixelSet(40, 28); myTOLED.pixelSet(53, 28); myTOLED.pixelSet(54, 28); myTOLED.pixelSet(55, 28); 
+  myTOLED.pixelSet(40, 29); myTOLED.pixelSet(52, 29); myTOLED.pixelSet(53, 29); myTOLED.pixelSet(54, 29); 
+  myTOLED.pixelSet(40, 30); myTOLED.pixelSet(41, 30); myTOLED.pixelSet(42, 30); myTOLED.pixelSet(43, 30); myTOLED.pixelSet(44, 30); myTOLED.pixelSet(45, 30); myTOLED.pixelSet(46, 30); myTOLED.pixelSet(47, 30); myTOLED.pixelSet(51, 30); myTOLED.pixelSet(52, 30); myTOLED.pixelSet(53, 30); myTOLED.pixelSet(54, 30); myTOLED.pixelSet(55, 30); myTOLED.pixelSet(56, 30); myTOLED.pixelSet(57, 30); myTOLED.pixelSet(58, 30); myTOLED.pixelSet(59, 30); myTOLED.pixelSet(60, 30); myTOLED.pixelSet(61, 30); myTOLED.pixelSet(62, 30); myTOLED.pixelSet(63, 30); myTOLED.pixelSet(64, 30); myTOLED.pixelSet(65, 30); 
+  myTOLED.pixelSet(40, 31); myTOLED.pixelSet(50, 31); myTOLED.pixelSet(51, 31); myTOLED.pixelSet(52, 31); myTOLED.pixelSet(53, 31); myTOLED.pixelSet(54, 31); myTOLED.pixelSet(55, 31); myTOLED.pixelSet(56, 31); myTOLED.pixelSet(57, 31); myTOLED.pixelSet(58, 31); myTOLED.pixelSet(59, 31); myTOLED.pixelSet(60, 31); myTOLED.pixelSet(61, 31); myTOLED.pixelSet(62, 31); myTOLED.pixelSet(63, 31); myTOLED.pixelSet(64, 31); myTOLED.pixelSet(65, 31); 
+  myTOLED.pixelSet(40, 32); 
+  myTOLED.pixelSet(40, 33); 
+  
+  myTOLED.pixelSet(40, 35); myTOLED.pixelSet(47, 35); 
+  myTOLED.pixelSet(40, 36); myTOLED.pixelSet(47, 36); myTOLED.pixelSet(50, 36); myTOLED.pixelSet(51, 36); myTOLED.pixelSet(52, 36); myTOLED.pixelSet(53, 36); myTOLED.pixelSet(54, 36); myTOLED.pixelSet(55, 36); myTOLED.pixelSet(56, 36); myTOLED.pixelSet(57, 36); myTOLED.pixelSet(58, 36); myTOLED.pixelSet(59, 36); myTOLED.pixelSet(60, 36); myTOLED.pixelSet(61, 36); myTOLED.pixelSet(62, 36); myTOLED.pixelSet(63, 36); myTOLED.pixelSet(64, 36); myTOLED.pixelSet(65, 36); 
+  myTOLED.pixelSet(40, 37); myTOLED.pixelSet(47, 37); myTOLED.pixelSet(50, 37); myTOLED.pixelSet(51, 37); myTOLED.pixelSet(52, 37); myTOLED.pixelSet(53, 37); myTOLED.pixelSet(54, 37); myTOLED.pixelSet(55, 37); myTOLED.pixelSet(56, 37); myTOLED.pixelSet(57, 37); myTOLED.pixelSet(58, 37); myTOLED.pixelSet(59, 37); myTOLED.pixelSet(60, 37); myTOLED.pixelSet(61, 37); myTOLED.pixelSet(62, 37); myTOLED.pixelSet(63, 37); myTOLED.pixelSet(64, 37); myTOLED.pixelSet(65, 37); 
+  myTOLED.pixelSet(40, 38); myTOLED.pixelSet(41, 38); myTOLED.pixelSet(42, 38); myTOLED.pixelSet(43, 38); myTOLED.pixelSet(44, 38); myTOLED.pixelSet(45, 38); myTOLED.pixelSet(46, 38); myTOLED.pixelSet(47, 38); myTOLED.pixelSet(50, 38); myTOLED.pixelSet(51, 38); myTOLED.pixelSet(57, 38); myTOLED.pixelSet(58, 38); myTOLED.pixelSet(64, 38); myTOLED.pixelSet(65, 38); 
+  myTOLED.pixelSet(40, 39); myTOLED.pixelSet(47, 39); myTOLED.pixelSet(50, 39); myTOLED.pixelSet(51, 39); myTOLED.pixelSet(57, 39); myTOLED.pixelSet(58, 39); myTOLED.pixelSet(64, 39); myTOLED.pixelSet(65, 39); 
+  myTOLED.pixelSet(40, 40); myTOLED.pixelSet(47, 40); myTOLED.pixelSet(50, 40); myTOLED.pixelSet(51, 40); myTOLED.pixelSet(57, 40); myTOLED.pixelSet(58, 40); myTOLED.pixelSet(64, 40); myTOLED.pixelSet(65, 40); 
+  myTOLED.pixelSet(40, 41); myTOLED.pixelSet(47, 41); myTOLED.pixelSet(50, 41); myTOLED.pixelSet(51, 41); myTOLED.pixelSet(57, 41); myTOLED.pixelSet(58, 41); myTOLED.pixelSet(64, 41); myTOLED.pixelSet(65, 41); 
+  myTOLED.pixelSet(50, 42); myTOLED.pixelSet(51, 42); myTOLED.pixelSet(57, 42); myTOLED.pixelSet(58, 42); myTOLED.pixelSet(64, 42); myTOLED.pixelSet(65, 42); 
+  myTOLED.pixelSet(40, 43); myTOLED.pixelSet(50, 43); myTOLED.pixelSet(51, 43); myTOLED.pixelSet(57, 43); myTOLED.pixelSet(58, 43); myTOLED.pixelSet(64, 43); myTOLED.pixelSet(65, 43); 
+  myTOLED.pixelSet(40, 44); myTOLED.pixelSet(41, 44); myTOLED.pixelSet(42, 44); myTOLED.pixelSet(43, 44); myTOLED.pixelSet(44, 44); myTOLED.pixelSet(45, 44); myTOLED.pixelSet(46, 44); myTOLED.pixelSet(47, 44); myTOLED.pixelSet(50, 44); myTOLED.pixelSet(51, 44); myTOLED.pixelSet(57, 44); myTOLED.pixelSet(58, 44); myTOLED.pixelSet(64, 44); myTOLED.pixelSet(65, 44); 
+  myTOLED.pixelSet(40, 45); myTOLED.pixelSet(43, 45); myTOLED.pixelSet(50, 45); myTOLED.pixelSet(51, 45); myTOLED.pixelSet(64, 45); myTOLED.pixelSet(65, 45); 
+  myTOLED.pixelSet(40, 46); myTOLED.pixelSet(43, 46); myTOLED.pixelSet(50, 46); myTOLED.pixelSet(51, 46); myTOLED.pixelSet(64, 46); myTOLED.pixelSet(65, 46); 
+  myTOLED.pixelSet(40, 47); myTOLED.pixelSet(43, 47); myTOLED.pixelSet(50, 47); myTOLED.pixelSet(51, 47); myTOLED.pixelSet(64, 47); myTOLED.pixelSet(65, 47); 
+  myTOLED.pixelSet(40, 48); 
+  
+  
+  myTOLED.pixelSet(40, 51); 
+  myTOLED.pixelSet(41, 52); 
+  myTOLED.pixelSet(42, 53); 
+  myTOLED.pixelSet(43, 54); myTOLED.pixelSet(44, 54); myTOLED.pixelSet(45, 54); myTOLED.pixelSet(46, 54); myTOLED.pixelSet(47, 54); 
+  myTOLED.pixelSet(42, 55); 
+  myTOLED.pixelSet(41, 56); 
+  myTOLED.pixelSet(40, 57); 
+
+  delay(3000);
 }
+
 
 void loop() {
-  showLogo(); //SHows logo on startup... hopefully
+  myTOLED.windowClear();
+  /*
   //TIME --- TIME --- TIME --- TIME --- TIME --- TIME
   int hr = 2; //Hour
   int mn = 30; //Minute
@@ -87,6 +154,12 @@ void loop() {
     myTOLED.setWindowColorSet();
     myTOLED.setTextCursor(128,0);
     myTOLED.print(hr + ":" + mn); //Hr:Minute
+    */
     //NEWS --- NEWS --- NEWS --- NEWS --- NEWS --- NEWS
-  }
+    for(int i = 0; i < sizeof(headlines); i++) {
+      myTOLED.setTextCursor(128, 0);
+      myTOLED.print(headlines[i]);
+      delay(10000);
+      myTOLED.windowClear();
+    }
 }
